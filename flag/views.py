@@ -8,7 +8,6 @@ from django.utils.translation import ugettext as _
 from flag.models import add_flag
 
 
-@login_required
 def flag(request):
     
     content_type = request.POST.get("content_type")
@@ -27,11 +26,7 @@ def flag(request):
     else:
         creator = None
     
-    add_flag(request.user, content_type, object_id, creator, comment)
-    request.user.message_set.create(
-        message = _("You have added a flag. A moderator will review your "
-            "submission shortly.")
-    )
+    add_flag(content_type, object_id, creator, comment)
     
     if next:
         return HttpResponseRedirect(next)

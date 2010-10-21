@@ -17,5 +17,4 @@ def flag(context, content_object, creator_field):
         "object_id": content_object.id,
         "creator_field": creator_field,
         "request": context["request"],
-        "user": context["user"],
     }
